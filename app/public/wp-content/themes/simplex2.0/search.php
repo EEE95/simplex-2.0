@@ -1,25 +1,17 @@
 <?php   
 /**
- * The template for displaying archive pages.
+ * Template for displaying search results
  */ 
 get_header();
 ?>
 
-<div id="primary" class="content-area">
+<div id="primary" class="search-content-area">
     <main id="main" class="site-main">
-        <?php if(have_posts()): ?>
-             <header class="archive-page-header">
-                <?php
-                    the_archive_title('<h1 class="archive-title">', '</h1>');
-                    the_archive_description('<div class="archive-description">', '</div>');
-                ?>
-            </header>
-
-            <?php 
-                //start the loop
+        <?php 
+            if(have_posts()):
                 while(have_posts()):
                     the_post();
-                    get_template_part('template-parts/post/content');
+                    get_template_part('template-parts/post/content', 'search');
                 endwhile;
 
                 //Previous/next page navigation
@@ -33,7 +25,6 @@ get_header();
             ?>   
         <?php endif; ?>
     </main>
-    <?php get_sidebar(); ?>
 </div>
 
 <?php get_footer(); ?>
